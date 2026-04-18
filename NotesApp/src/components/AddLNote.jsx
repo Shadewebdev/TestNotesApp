@@ -10,7 +10,7 @@ export default function AddLNote({ onAdd }) {
     if (!title || !content) return; // Basic validation
 
     // Send the data up to the parent (App.jsx)
-    onAdd({ title, content, id: Date.now() });
+    onAdd({ title, content });
 
     // Clear the form
     setTitle("");
