@@ -191,7 +191,7 @@ function App() {
           <li key={note.id} className={`flex justify-between p-3 bg-white shadow rounded ${note.isDone ? 'line-through' : ''}`}>
               <div className='flex items-center'>
 
-                <input type="checkbox" id={note.id} className="mr-1" checked={note.isDone} onChange={() => toggleTodo(note.id)}/>
+                <input type="checkbox" id={note.id} className="mr-2" checked={note.isDone} onChange={() => toggleTodo(note.id)}/>
                 <span className=''>{note.text}</span>
 
               </div>
