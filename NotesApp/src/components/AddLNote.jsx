@@ -18,7 +18,7 @@ export default function AddLNote({ onAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-8 p-4 bg-gray-50 rounded shadow">
+    <form onSubmit={handleSubmit} className="mb-8 p-4 bg-gray-50 rounded-xl shadow">
       <input 
         type="text"
         placeholder="Note Title"
@@ -32,7 +32,7 @@ export default function AddLNote({ onAdd }) {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
+      <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-600 transition">
         Add Note
       </button>
     </form>

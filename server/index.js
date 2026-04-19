@@ -38,6 +38,17 @@ app.post('/Lnotes', (req, res) => {
 });
 
 
+app.delete('/notes/completed', (req, res) => { // Static routes must be placed above dynamic routes to prevent errors.
+    try {
+        const info = db.prepare('DELETE FROM notes WHERE isDone = ?').run(1);
+
+        res.json({ success: true });
+        
+    } catch (err) {
+        res.status(500).json({ error: "Database error" });
+    }
+});
+
 // How does the POST section work, and does this two mean when the app calls for get at /notes it returns all notes and post at /notes means it updates the DB?
 
 // DELETE a note
