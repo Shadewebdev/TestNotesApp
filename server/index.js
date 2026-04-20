@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const Database = require('better-sqlite3');
 const cors = require('cors');
 
@@ -7,6 +8,7 @@ const db = new Database('NoteApp.db'); // This creates the file automatically
 
 app.use(cors()); // Allows server on localhost:5173 to communicate with other ports (e.g. sqlite server)
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../NotesApp/dist')));
 
 // Initialize table
 db.exec("CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, isDone INTEGER)");
@@ -91,4 +93,15 @@ app.patch('/notes/:id', (req, res) => {
     }
 });
 
-app.listen(5000, () => console.log('Server running on port 5000'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../NotesApp/dist', 'index.html'));
+});
+
+// app.listen(5000, () => console.log('Server running on port 5000'));
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

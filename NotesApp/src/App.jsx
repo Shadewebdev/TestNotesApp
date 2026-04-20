@@ -15,7 +15,7 @@ function App() {
 
   // Load notes from the server when the component mounts
   useEffect(() => {
-    fetch('http://localhost:5000/notes')
+    fetch('/notes')
       .then(res => res.json())
       .then(data => setNotes(data));
   }, []);
@@ -23,7 +23,7 @@ function App() {
   const [Lnotes, setLnotes] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/Lnotes')
+    fetch('/Lnotes')
       .then(res => res.json())
       .then(data => setLnotes(data));
   }, []);
@@ -39,7 +39,7 @@ function App() {
 
     try {
 
-      const response = await fetch('http://localhost:5000/notes', {
+      const response = await fetch('/notes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: inputText })
@@ -66,7 +66,7 @@ function App() {
 
   const addLnote = async (newNote) => {
 
-    const response = await fetch('http://localhost:5000/Lnotes', {
+    const response = await fetch('/Lnotes', {
 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -81,7 +81,7 @@ function App() {
 
   const deleteNote = async (id) => {
     // 1. Tell the database to delete it
-    await fetch(`http://localhost:5000/notes/${id}`, {
+    await fetch(`/notes/${id}`, {
       method: 'DELETE',
     });
 
@@ -91,7 +91,7 @@ function App() {
 
   const deleteLnote = async (id) => {
 
-    await fetch(`http://localhost:5000/Lnotes/${id}`, {
+    await fetch(`/Lnotes/${id}`, {
       method: 'DELETE',
     });
 
@@ -107,7 +107,7 @@ function App() {
     const targetNote = notes.find(n => n.id === id);
     const updateStatus = targetNote.isDone ? 0 : 1;
 
-    const response = await fetch(`http://localhost:5000/notes/${id}`, {
+    const response = await fetch(`/notes/${id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ isDone: updateStatus })
@@ -144,7 +144,7 @@ function App() {
 
   const clearCompletedNotes = async () => {
 
-    const response = await fetch(`http://localhost:5000/notes/completed`, {
+    const response = await fetch(`/notes/completed`, {
       method: 'DELETE',
     });
 
