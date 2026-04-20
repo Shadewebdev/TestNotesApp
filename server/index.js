@@ -94,7 +94,7 @@ app.patch('/notes/:id', (req, res) => {
 });
 
 
-app.get('/:any*', (req, res) => {
+app.get('(/.*)?', (req, res) => {
   res.sendFile(path.join(__dirname, '../NotesApp/dist', 'index.html'));
 });
 
